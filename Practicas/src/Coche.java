@@ -1,12 +1,10 @@
 
 public class Coche {
 	
-	int peso,largo,ancho,ruedas;
-	
-	
+	int peso,largo,ancho,ruedas;	
 	
 	public Coche(){
 		
 	}
-
+	
 }
