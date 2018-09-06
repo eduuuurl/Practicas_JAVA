@@ -29,7 +29,7 @@ public class Uso_Empleado { //Le llamamos asi a la clase por que aqui tendremos 
 		//Aqui vamos a hacer lo mismo que en las lineas que hay arriba comentadas, pero usando arrays
 		//y cosas más eficientes
 		
-		Empleado[] misEmpleados=new Empleado [3];
+		Empleado[] misEmpleados=new Empleado [4];
 		
 		misEmpleados[0]=new Empleado("Paco Gómez", 85000, 1990, 12, 17);	
 		
@@ -37,16 +37,29 @@ public class Uso_Empleado { //Le llamamos asi a la clase por que aqui tendremos 
 		
 		misEmpleados[2]=new Empleado("María MArtín", 24000, 2002, 02, 3);
 		
+		misEmpleados[3]=new Empleado("Antonio Fernandez");
+		
 		for(int i = 0; i < 3; i++){
 			
 			misEmpleados[i].subeSueldo(5);
 			
 		}
 		
-		for(int i = 0; i< 3; i++){
+		for(int i = 0; i< misEmpleados.length; i++){
 			
-			System.out.println("Nombre :" + misEmpleados[i].get_nombre() + " Sueldo: " + misEmpleados[i].get_sueldo()
-					+ " Fecha de alta: " + misEmpleados[i].get_altaContrato());
+			if (misEmpleados[i].get_sueldo()!=0){
+				
+				System.out.println("Nombre: " + misEmpleados[i].get_nombre() + " Sueldo: " + misEmpleados[i].get_sueldo()
+						+ " Fecha de alta: " + misEmpleados[i].get_altaContrato());
+				
+			} else {
+				
+				System.out.println("Nombre: " + misEmpleados[i].get_nombre());
+				
+				/*Esto ya no tendrá sentido, porque he modificado el otro constructor de empleado,
+				 * y ya no puede haber empleados sin sueldo ni fecha de alta, se asigna una por defecto*/
+				
+			}			
 			
 		}
 		
@@ -67,6 +80,13 @@ class Empleado {
 		
 		altaContrato = calendario.getTime();		
 				
+	}
+	
+	public Empleado(String nom){ //Este es otro constructor
+		
+		this(nom, 30000, 2000,01,01); 	//Esto lo hacemos para cuando solo sabemos el nombre, asignamos ese
+										//sueldo y esa fecha. Al poner el this, llamamos al otro constructor.
+		
 	}
 	
 	public String get_nombre (){  //getter

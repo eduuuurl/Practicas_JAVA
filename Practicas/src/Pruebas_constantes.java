@@ -23,6 +23,8 @@ public class Pruebas_constantes {
 		
 		System.out.println(trabajador3.devuelveDatos());
 		
+		System.out.println(Empleados.dimeId());
+		
 	}
 
 }
@@ -56,6 +58,12 @@ class Empleados {
 	public String devuelveDatos(){
 		
 		return "El nombre es: " + nombre + ", la sección es " + seccion+ " y su Id es "+ Id;
+		
+	}
+	
+	public static String dimeId(){
+		
+		return "El siguiente numero de Id es: "+Id_class;
 		
 	}
 	
