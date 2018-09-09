@@ -27,4 +27,72 @@ public class Coche {
 		
 	}
 	
+	public void establece_color(String color_coche){ //setter
+		
+		color=color_coche;
+		
+	}
+	
+	public String dime_color(){
+		
+		return "El coche es de color "+color;		
+		
+	}
+	
+	public void configura_asientos(String siono){ //setter
+		
+		if (siono.equalsIgnoreCase("si")){
+			
+			asientos_cuero=true;
+			
+		} else {
+			
+			asientos_cuero=false;
+			
+		}
+		
+	}
+	
+	public void dime_asientos(){
+		
+		if(asientos_cuero){
+			
+			System.out.println("El vehiculo tiene asientos de cuero");
+			
+		}else {
+			
+			System.out.println("El vehiculo no tiene asientos de cuero");
+						
+		}
+		
+	}
+	
+public void configura_climatizador(String siono){ //setter
+		
+		if (siono.equalsIgnoreCase("si")){
+			
+			climatizador=true;
+			
+		} else {
+			
+			climatizador=false;
+			
+		}
+		
+	}
+	
+	public void dime_climatizador(){
+		
+		if(climatizador){
+			
+			System.out.println("El vehiculo tiene climatizador");
+			
+		}else {
+			
+			System.out.println("El vehiculo no tiene climatizador");
+						
+		}
+		
+	}
+	
 }	
