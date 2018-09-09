@@ -67,7 +67,7 @@ public class Coche {
 		
 	}
 	
-public void configura_climatizador(String siono){ //setter
+	public void configura_climatizador(String siono){ //setter
 		
 		if (siono.equalsIgnoreCase("si")){
 			
