@@ -23,6 +23,10 @@ public class Uso_Empleado { //Le llamamos asi a la clase por que aqui tendremos 
 		
 		misEmpleados[5]=jefe_RRHH; //POLIMORFISMO
 		
+		Jefe jefa_FINANZAS = (Jefe) misEmpleados[4]; //Esto es un casting de Empleado a Jefe
+		
+		jefa_FINANZAS.establece_incentivo(1); //Ahora podemos usar ese metodo al objeto creado en la array de tipo Empleado
+		
 		for(int i = 0; i < misEmpleados.length; i++){
 			
 			misEmpleados[i].subeSueldo(10); //Subimos el sueldo a todos
@@ -135,4 +139,14 @@ class Jefe extends Empleado{
 	
 	private double incentivo;
 
+}
+
+final class Director extends Jefe { //No queremos que de esta class se pueda hacer ninguna subclass
+	
+	public Director (String nom, double sue, int year, int month, int day) {
+		
+		super(nom, sue, year, month, day); //llamamos al constr de la super, pasandole param que tocan
+		
+	}
+	
 }
