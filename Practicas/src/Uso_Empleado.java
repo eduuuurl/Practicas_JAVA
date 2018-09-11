@@ -5,31 +5,11 @@ public class Uso_Empleado { //Le llamamos asi a la clase por que aqui tendremos 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		/*Empleado empleado1 = new Empleado("Paco Gómez", 85000, 1990, 12, 17);
+		Jefe jefe_RRHH = new Jefe ("Luis Piedra", 100000, 1989, 11, 15);
 		
-		Empleado empleado2 = new Empleado("Eduardo Garcia", 18000, 2017, 10, 3);
+		jefe_RRHH.establece_incentivo(5000);
 		
-		Empleado empleado3 = new Empleado("María MArtín", 24000, 2002, 02, 3);
-		
-		empleado1.subeSueldo(5);
-		
-		empleado2.subeSueldo(5);
-		
-		empleado3.subeSueldo(5);
-		
-		System.out.println("Nombre :" + empleado1.get_nombre() + " Sueldo: " + empleado1.get_sueldo()
-		+ " Fecha de alta: " + empleado1.get_altaContrato());
-		
-		System.out.println("Nombre :" + empleado2.get_nombre() + " Sueldo: " + empleado2.get_sueldo()
-		+ " Fecha de alta: " + empleado2.get_altaContrato());	
-		
-		System.out.println("Nombre :" + empleado3.get_nombre() + " Sueldo: " + empleado3.get_sueldo()
-		+ " Fecha de alta: " + empleado3.get_altaContrato());*/	
-
-		//Aqui vamos a hacer lo mismo que en las lineas que hay arriba comentadas, pero usando arrays
-		//y cosas más eficientes
-		
-		Empleado[] misEmpleados=new Empleado [4];
+		Empleado[] misEmpleados=new Empleado [6];
 		
 		misEmpleados[0]=new Empleado("Paco Gómez", 85000, 1990, 12, 17);	
 		
@@ -39,9 +19,13 @@ public class Uso_Empleado { //Le llamamos asi a la clase por que aqui tendremos 
 		
 		misEmpleados[3]=new Empleado("Antonio Fernandez");
 		
-		for(int i = 0; i < 3; i++){
+		misEmpleados[4]=new Jefe("Luis Palomo", 100000, 1987, 07, 5); //Un jefe es un empleado POLIMORFISMO
+		
+		misEmpleados[5]=jefe_RRHH; //POLIMORFISMO
+		
+		for(int i = 0; i < misEmpleados.length; i++){
 			
-			misEmpleados[i].subeSueldo(5);
+			misEmpleados[i].subeSueldo(10); //Subimos el sueldo a todos
 			
 		}
 		
@@ -121,4 +105,34 @@ class Empleado {
 	
 	private Date altaContrato;	
 	
+}
+
+class Jefe extends Empleado{
+	
+	public Jefe (String nom, double sue, int year, int month, int day) {
+		
+		super(nom, sue, year, month, day); //llamamos al constr de la super, pasandole param que tocan
+		
+	}
+	
+	public void establece_incentivo(double b) {
+		
+		incentivo = b;
+		
+	}
+	
+	/*Ahora lo que vamos a hacer aqui es sobreescribir el metodo
+	 * dame sueldo, que esta ya en la clase empleado, pero ahi no tenemos
+	 * el parametro incentivo, y queremos que un jefe tenga incentivos*/
+	
+	public double get_sueldo(){	 //getter
+		
+		double sueldoJefe=super.get_sueldo();
+		
+		return sueldoJefe+incentivo;
+		
+	}
+	
+	private double incentivo;
+
 }
