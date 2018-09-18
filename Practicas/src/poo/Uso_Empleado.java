@@ -1,3 +1,4 @@
+package poo;
 import java.util.*;
 
 public class Uso_Empleado { //Le llamamos asi a la clase por que aqui tendremos el main

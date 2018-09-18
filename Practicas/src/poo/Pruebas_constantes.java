@@ -1,3 +1,4 @@
+package poo;
 
 /* 20180905 Esta class es solo para hacer
  * una pequeña prueba con el modifier FINAL*/
