@@ -2,7 +2,7 @@ package poo;
 import java.util.*;
 
 public class Uso_Empleado { //Le llamamos asi a la clase por que aqui tendremos el main
-
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
@@ -34,16 +34,18 @@ public class Uso_Empleado { //Le llamamos asi a la clase por que aqui tendremos 
 			
 		}
 		
+		Arrays.sort(misEmpleados);
+		
 		for(int i = 0; i< misEmpleados.length; i++){
 			
 			if (misEmpleados[i].get_sueldo()!=0){
 				
-				System.out.println("Nombre: " + misEmpleados[i].get_nombre() + " Sueldo: " + misEmpleados[i].get_sueldo()
+				System.out.println("Nombre: " + misEmpleados[i].get_nombre() + " ID = "+misEmpleados[i].get_ID() + " Sueldo: " + misEmpleados[i].get_sueldo()
 						+ " Fecha de alta: " + misEmpleados[i].get_altaContrato());
 				
 			} else {
 				
-				System.out.println("Nombre: " + misEmpleados[i].get_nombre());
+				System.out.println("Nombre: " + misEmpleados[i].get_nombre()+ " ID = "+misEmpleados[i].get_ID());
 				
 				/*Esto ya no tendrá sentido, porque he modificado el otro constructor de empleado,
 				 * y ya no puede haber empleados sin sueldo ni fecha de alta, se asigna una por defecto*/
@@ -56,7 +58,7 @@ public class Uso_Empleado { //Le llamamos asi a la clase por que aqui tendremos 
 
 }
 
-class Empleado {
+class Empleado implements Comparable{
 	
 	public Empleado(String nom, double sue, int year, int month, int day){
 		
@@ -67,7 +69,11 @@ class Empleado {
 		GregorianCalendar calendario = new GregorianCalendar(year, month-1, day);
 					//month-1 es porque enero es el mes 0 en la class GrgorianCalendar
 		
-		altaContrato = calendario.getTime();		
+		altaContrato = calendario.getTime();
+		
+		IDempleado = ID;
+		
+		ID++;
 				
 	}
 	
@@ -75,6 +81,26 @@ class Empleado {
 		
 		this(nom, 30000, 2000,01,01); 	//Esto lo hacemos para cuando solo sabemos el nombre, asignamos ese
 										//sueldo y esa fecha. Al poner el this, llamamos al otro constructor.
+		
+	}
+	
+	public int compareTo (Object miObjeto){
+		
+		Empleado otroEmpleado=(Empleado)miObjeto;
+		
+		if(this.IDempleado < otroEmpleado.IDempleado){
+			
+			return -1;
+			
+		}
+		
+		if (this.IDempleado > otroEmpleado.IDempleado){
+			
+			return 1;
+			
+		}
+		
+		return 0;
 		
 	}
 	
@@ -86,7 +112,13 @@ class Empleado {
 	
 	public double get_sueldo(){	 //getter
 		
-		return sueldo;
+		return sueldo;		
+		
+	}
+	
+	public int get_ID(){
+		
+		return IDempleado;
 		
 	}
 	
@@ -108,11 +140,15 @@ class Empleado {
 	
 	private double sueldo;
 	
-	private Date altaContrato;	
+	private Date altaContrato;
+	
+	private int IDempleado; 
+	
+	public static int ID = 1;
 	
 }
 
-class Jefe extends Empleado{
+class Jefe extends Empleado {
 	
 	public Jefe (String nom, double sue, int year, int month, int day) {
 		
