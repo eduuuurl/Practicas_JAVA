@@ -1,6 +1,8 @@
 package poo;
 import java.util.*;
 
+import javax.swing.plaf.synth.SynthFormattedTextFieldUI;
+
 public class Uso_Empleado { //Le llamamos asi a la clase por que aqui tendremos el main
 	
 	public static void main(String[] args) {
@@ -28,6 +30,14 @@ public class Uso_Empleado { //Le llamamos asi a la clase por que aqui tendremos 
 		
 		jefa_FINANZAS.establece_incentivo(1); //Ahora podemos usar ese metodo al objeto creado en la array de tipo Empleado
 		
+		System.out.println(jefa_FINANZAS.tomar_decisiones("vacaciones para todos"));
+		
+		System.out.println("El jefe "+jefa_FINANZAS.get_nombre()+ 
+				"tiene un bonus de "+jefa_FINANZAS.establece_bonus(500));		
+		
+		System.out.println(misEmpleados[3].get_nombre()+" tiene un bonus de "+
+				misEmpleados[3].establece_bonus(500));
+		
 		for(int i = 0; i < misEmpleados.length; i++){
 			
 			misEmpleados[i].subeSueldo(10); //Subimos el sueldo a todos
@@ -54,11 +64,21 @@ public class Uso_Empleado { //Le llamamos asi a la clase por que aqui tendremos 
 			
 		}
 		
+		/*Este if es para usar el instanceof y ver que una instancia de la array
+		 * misEmpleados es un Comparable, porque Empleado implementa la interfaz 
+		 * Comparable*/
+		
+		/*if (misEmpleados[5] instanceof Comparable) {
+			
+			System.out.println("Esto es una instancia de Comparable");
+			
+		}*/
+		
 	}
 
 }
 
-class Empleado implements Comparable{
+class Empleado implements Comparable, Trabajadores{
 	
 	public Empleado(String nom, double sue, int year, int month, int day){
 		
@@ -81,6 +101,12 @@ class Empleado implements Comparable{
 		
 		this(nom, 30000, 2000,01,01); 	//Esto lo hacemos para cuando solo sabemos el nombre, asignamos ese
 										//sueldo y esa fecha. Al poner el this, llamamos al otro constructor.
+		
+	}
+	
+	public double establece_bonus (double gratificacion) {
+		
+		return Trabajadores.bonus_base + gratificacion;
 		
 	}
 	
@@ -148,11 +174,25 @@ class Empleado implements Comparable{
 	
 }
 
-class Jefe extends Empleado {
+class Jefe extends Empleado implements Jefes{
 	
 	public Jefe (String nom, double sue, int year, int month, int day) {
 		
 		super(nom, sue, year, month, day); //llamamos al constr de la super, pasandole param que tocan
+		
+	}
+	
+	public String tomar_decisiones (String decision) {
+		
+		return "Un miembro de la direccion ha tomado la decision de: "+decision;
+		
+	}
+	
+	public double establece_bonus (double gratificacion) {
+		
+		double prima = 2000; //Esto es para que los jefes tengan mas bonus
+		
+		return Trabajadores.bonus_base + gratificacion + prima;
 		
 	}
 	
