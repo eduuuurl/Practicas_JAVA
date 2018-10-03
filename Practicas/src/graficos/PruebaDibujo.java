@@ -19,6 +19,7 @@ class MarcoConDibujos extends JFrame{
 		setSize(1200,800);
 		LaminaConFiguras milamina2 = new LaminaConFiguras();
 		add(milamina2);
+		milamina2.setBackground(Color.DARK_GRAY);
 	}
 }
 
@@ -28,10 +29,12 @@ class LaminaConFiguras extends JPanel{
 		//g.drawOval(50, 50, 200, 50);
 		Graphics2D g2 = (Graphics2D) g;
 		Rectangle2D rectangulo = new Rectangle2D.Double(100,100,200,150);
-		g2.draw(rectangulo);
+		g2.setPaint(Color.RED);
+		g2.fill(rectangulo);
 		Ellipse2D elipse = new Ellipse2D.Double();
 		elipse.setFrame(rectangulo);
-		g2.draw(elipse); 
+		g2.setPaint(new Color(130,230,140).brighter());
+		g2.fill(elipse); 
 		g2.draw(new Line2D.Double(100, 100, 250, 390));
 		double radio=150;
 		Ellipse2D elipse2 = new Ellipse2D.Double();
