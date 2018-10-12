@@ -25,7 +25,7 @@ class MarcoImagen extends JFrame{
 		
 		setTitle("Marco con Imagen");
 		
-		setBounds(750,300,300,400);
+		setBounds(200,200,800,800);
 		
 		LaminaConImagen milamina = new LaminaConImagen();
 		
@@ -37,25 +37,42 @@ class MarcoImagen extends JFrame{
 
 class LaminaConImagen extends JPanel{
 	
-	public void paintComponent(Graphics g) {
-		
-		super.paintComponent(g);
-		
-		File mifichero = new File("src/graficos/coche.png");
+	public LaminaConImagen(){
 		
 		try {
-			imagen = ImageIO.read(mifichero);
+			imagen = ImageIO.read(new File("src/graficos/heart.png"));
 		}
 		catch(IOException e){
 			System.out.println("La imagen no ha sido encontrada");
 		}
 		
-		g.drawImage(imagen, 5, 5, null); 
+	}
+	
+	public void paintComponent(Graphics g) {
+		
+		super.paintComponent(g);
+		
+		//File mifichero = new File("src/graficos/heart.png"); //Hemos metido esto en el
+		//constructor de LaminaConImagen, donde tambien creamos el objeto imagen
+		
+		int anchoimagen = imagen.getWidth(this); 
+		
+		int altoimagen = imagen.getHeight(this);
+		
+		g.drawImage(imagen, 0, 0, null);
+		
+		for (int i=0;i<200;i++) {
+			
+			for (int j=0;j<200;j++) {
+				
+				g.copyArea(0, 0, anchoimagen, altoimagen, anchoimagen*i,altoimagen*j );
+								
+			}
+			
+		}
 		
 	}
 	
 	private Image imagen;
-	
-	
 	
 }
