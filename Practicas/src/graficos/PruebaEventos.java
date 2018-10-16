@@ -37,7 +37,7 @@ class MarcoConBotones extends JFrame{
 	
 }
 
-class LaminaConBotones extends JPanel implements ActionListener{
+class LaminaConBotones extends JPanel{
 	
 	JButton botonazul = new JButton("Boton azul");
 	
@@ -49,40 +49,49 @@ class LaminaConBotones extends JPanel implements ActionListener{
 		
 		add(botonazul);
 		
-		botonazul.addActionListener(this);
-		
 		add(botonrojo);
-		
-		botonrojo.addActionListener(this);
 		
 		add(botonamarillo);
 		
-		botonamarillo.addActionListener(this);
+		ColorFondo Amarillo = new ColorFondo(Color.YELLOW);
+		
+		ColorFondo Azul = new ColorFondo(Color.BLUE);
+		
+		ColorFondo Rojo = new ColorFondo(Color.RED);
+		
+		/*Los botones son el objeto fuente, son los que desencadenaran un evento,
+		 * y los objetos OYENTES o listeners seran los que "verán" ese evento. 
+		 * El objeto EVENTO es hacer clic */
+		
+		botonazul.addActionListener(Azul);
+		
+		botonrojo.addActionListener(Rojo);
+		
+		botonamarillo.addActionListener(Amarillo);
 		
 	}
 	
-	public void actionPerformed(ActionEvent e) {
+	/*Esta clase, ColorFondo, es la clase a la que perteneceran los objetos oyentes,
+	 * ya que es la clase que implementa la interfaz ActionListener. Vemos que tenemos
+	 * que implementar el metodo ActionPerformed*/
+	
+	private class ColorFondo implements ActionListener{
 		
-		Object botonPulsado = e.getSource();
+		public ColorFondo(Color c) {
 			
-		if (botonPulsado.equals(botonazul)) {
-		
-			setBackground(Color.BLUE);
+			colorDeFondo = c;
 			
 		}
 		
-		if (botonPulsado.equals(botonrojo)) {
+		public void actionPerformed (ActionEvent e) {
 			
-			setBackground(Color.RED);
+			setBackground(colorDeFondo);
 			
 		}
 		
-		if (botonPulsado.equals(botonamarillo)) {
-			
-			setBackground(Color.YELLOW);
-			
-		}
+		private Color colorDeFondo;
 		
 	}
 	
 }
+
