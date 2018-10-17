@@ -2,9 +2,7 @@ package graficos;
 
 import java.awt.event.*;
 import java.awt.*;
-
 import javax.swing.*;
-
 
 public class PruebaEventos {
 
@@ -73,7 +71,10 @@ class LaminaConBotones extends JPanel{
 	
 	/*Esta clase, ColorFondo, es la clase a la que perteneceran los objetos oyentes,
 	 * ya que es la clase que implementa la interfaz ActionListener. Vemos que tenemos
-	 * que implementar el metodo ActionPerformed*/
+	 * que implementar el metodo ActionPerformed.
+	 * 
+	 * Además es una inner class de la clase LaminaConBotones, la hemos creado con el
+	 * fin de que "escuche" los eventos que se lancen dentro de la lamina*/
 	
 	private class ColorFondo implements ActionListener{
 		
