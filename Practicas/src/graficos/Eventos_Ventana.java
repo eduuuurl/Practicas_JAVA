@@ -38,9 +38,14 @@ class MarcoVentana extends JFrame{
 		
 		setVisible(true);
 		
-		M_Ventana oyenteVentana = new M_Ventana();
+		/*M_Ventana oyenteVentana = new M_Ventana();
 		
-		addWindowListener(oyenteVentana);
+		addWindowListener(oyenteVentana);*/
+		
+		/*Esto es otra forma de hacer lo de las dos lineas de arriba,
+		 * simplificando un poco más el código*/
+		
+		addWindowListener(new M_Ventana());
 		
 	}
 	
@@ -51,7 +56,12 @@ class MarcoVentana extends JFrame{
  * interfaz WindowListener, pero eso lo hace eclipse si se lo
  * decimos. Solo voy a usar alguno de ellos.*/
 
-class M_Ventana implements WindowListener{
+/*Comento todo esto porque voy a ver otra forma de escribir todo esto,
+ * que es simplemente, en vez de implementar la interfaz WindowListener,
+ * lo que haré es extender de una class que ya de por si implementa
+ * todos estos metodos, asi solo tengo que sobreescribir los que a mi me interese */
+
+/*class M_Ventana implements WindowListener{
 
 	@Override
 	public void windowActivated(WindowEvent e) {
@@ -105,8 +115,16 @@ class M_Ventana implements WindowListener{
 	public void windowOpened(WindowEvent e) {
 		// TODO Auto-generated method stub
 		
+	}*/ 
+
+class M_Ventana extends WindowAdapter {
+	
+	@Override
+	public void windowIconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+		System.out.println("Ventana minimizada");
+		
 	}
-	
-	
 	
 }
