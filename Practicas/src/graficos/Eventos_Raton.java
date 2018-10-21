@@ -33,17 +33,49 @@ class MarcoRaton extends JFrame {
 		
 		addMouseListener(eventoraton);
 		
+		RatonMoviendose mueveraton = new RatonMoviendose();
+		
+		addMouseMotionListener(mueveraton);
+		
 	}
 	
 }
 
-class EventosDeRaton implements MouseListener{
+/*Aqui hago uso de la adapter class MouseAdapter, asi no tengo
+ * que implementar tdos los metosos de la interfaz MouseListener,
+ * como hago abajo en el codigo comentado*/
+
+class EventosDeRaton extends MouseAdapter{
+	
+	public void mousePressed (MouseEvent e) {
+		
+		if(e.getModifiersEx()==MouseEvent.BUTTON1_DOWN_MASK) {
+		
+			System.out.println("Has hecho clic izquierdo");
+			
+		//System.out.println(e.getModifiersEx());
+		
+		} else if (e.getModifiersEx()==MouseEvent.BUTTON3_DOWN_MASK) {
+			
+			System.out.println("Has hecho clic derecho");
+			
+		}
+		
+	}
+	
+}
+
+/*class EventosDeRaton implements MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 		System.out.println("Has hecho clic");
+		
+		System.out.println("Coordenada X: "+e.getX() + " Coordenada Y: "+e.getY());
+		
+		System.out.println("Has hecho clic "+e.getClickCount()+" veces");
 		
 	}
 
@@ -76,6 +108,28 @@ class EventosDeRaton implements MouseListener{
 		// TODO Auto-generated method stub
 		
 		System.out.println("Acabas de levantar");
+		
+	}
+	
+	
+	
+}*/
+
+class RatonMoviendose implements MouseMotionListener {
+
+	@Override
+	public void mouseDragged(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+		System.out.println("El raton se arrastra");
+		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+		System.out.println("El raton se mueve");
 		
 	}
 	
