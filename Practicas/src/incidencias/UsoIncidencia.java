@@ -29,9 +29,9 @@ class MarcoIncidencias extends JFrame{
 		
 		setBounds(200,200,1200,800);
 		
-		LaminaIncidencias LaminaIncidencias = new LaminaIncidencias();
+		LaminaIncidencias lamina_principal = new LaminaIncidencias();
 		
-		add(LaminaIncidencias);
+		add(lamina_principal);
 			
 	}
 	
