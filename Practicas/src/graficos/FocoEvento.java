@@ -63,7 +63,7 @@ class LaminaFoco extends JPanel{
 	private class LanzaFocos implements FocusListener{
 
 		@Override
-		public void focusGained(FocusEvent arg0) {
+		public void focusGained(FocusEvent e) {
 			// TODO Auto-generated method stub
 			
 			System.out.println("Has ganado el foco");
@@ -71,10 +71,37 @@ class LaminaFoco extends JPanel{
 		}
 
 		@Override
-		public void focusLost(FocusEvent arg0) {
+		public void focusLost(FocusEvent e) {
 			// TODO Auto-generated method stub
 			
 			System.out.println("Has perdido el foco");
+			
+			/*Aqui vamos a ver si lo que hay en el cuadro de texto
+			 * puede ser un email, que tenga una '@'*/
+			
+			String email = cuadro1.getText();
+			
+			boolean comprobacion = false;
+			
+			for (int i=0; i<email.length(); i++) {
+				
+				if(email.charAt(i)=='@') {
+					
+					comprobacion = true;
+					
+				}
+				
+			}
+			
+			if(comprobacion) {
+				
+				System.out.println("Correcto");
+				
+			}else {
+				
+				System.out.println("Incorrecto");
+				
+			}
 			
 		}
 			
