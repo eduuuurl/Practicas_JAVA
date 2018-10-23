@@ -40,25 +40,25 @@ class PanelAction extends JPanel{
 	public PanelAction () {
 		
 		AccionColor accionamarillo = new AccionColor("amarillo", 
-				new ImageIcon("src/graficos/iconobolaamarilla.png"),new Color(245,242,122));
+				new ImageIcon("src/graficos/amarillo.gif"),new Color(245,242,122));
 		
 		AccionColor accionrojo = new AccionColor("rojo", 
-				new ImageIcon("src/graficos/iconobolaroja.png"),new Color(242,83,36));
+				new ImageIcon("src/graficos/rojo.gif"),new Color(242,83,36));
 		
 		AccionColor accionazul = new AccionColor("azul", 
-				new ImageIcon("src/graficos/iconobolaazul.png"),new Color(150,203,218));
+				new ImageIcon("src/graficos/azul.gif"),new Color(150,203,218));
 		
-		/*JButton botonazul = new JButton("Azul");
+		JButton botonazul = new JButton("Azul",new ImageIcon("src/graficos/azul.gif"));
 		
-		JButton botonrojo = new JButton("Rojo");
+		JButton botonrojo = new JButton("Rojo",new ImageIcon("src/graficos/rojo.gif"));
 		
-		JButton botonamarillo = new JButton("Amarillo");
+		JButton botonamarillo = new JButton("Amarillo",new ImageIcon("src/graficos/amarillo.gif"));
 		
 		add(botonazul);
 		
 		add(botonrojo);
 		
-		add(botonamarillo);*/
+		add(botonamarillo);
 		
 	}
 	
