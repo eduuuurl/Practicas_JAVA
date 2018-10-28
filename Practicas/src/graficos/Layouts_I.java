@@ -29,24 +29,11 @@ class Marco_Layout extends JFrame{
 		
 		Panel_Layout lamina = new Panel_Layout();
 		
-		/*Aquí creamos un nuevo layout para que nos ponga los elementos del frame a la izquierda.
-		 * Por defecto es centrado. Lo que hacemos es crear una nueva instancia de FlowLayout*/
+		Panel_Layout_2 lamina_2 = new Panel_Layout_2();
 		
-		//FlowLayout disposicion = new FlowLayout(FlowLayout.LEFT);
+		add(lamina,BorderLayout.NORTH);
 		
-		//Y con esto ahora aplicamos ese Layout
-		
-		//setLayout(disposicion);
-		
-		/*Como siempre, podemos hacer este codigo más corto poniendolo todo en una misma linea
-		 * de codigo*/
-		
-		/*Pasa algo raro, no está teniendo en cuenta el ultimo parametro del constructor, el
-		 * que marca la separacion horizontal entre los elementos*/
-		
-		setLayout(new FlowLayout(FlowLayout.CENTER,200,200));		
-		
-		add(lamina);	
+		add(lamina_2,BorderLayout.SOUTH);
 		
 	}
 	
@@ -56,11 +43,29 @@ class Panel_Layout extends JPanel{
 	
 	public Panel_Layout() {
 		
+		//setLayout(new FlowLayout(FlowLayout.CENTER,100,100));
+		
+		setLayout(new FlowLayout(FlowLayout.LEFT));
+		
 		add(new JButton("Amarillo"));
 		
-		add(new JButton("Rojo"));
+		add(new JButton("Rojo"));		
 		
-		add(new JButton("Azul"));		
+	}
+	
+}
+
+class Panel_Layout_2 extends JPanel{
+	
+	public Panel_Layout_2 () {
+		
+		setLayout(new BorderLayout());
+		
+		add(new JButton("Azul"),BorderLayout.EAST);
+		
+		add(new JButton("Verde"),BorderLayout.WEST);
+		
+		add(new JButton("Negro"),BorderLayout.CENTER);
 		
 	}
 	
