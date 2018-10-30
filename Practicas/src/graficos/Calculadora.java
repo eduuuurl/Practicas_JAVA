@@ -5,6 +5,8 @@
 package graficos;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -35,6 +37,8 @@ class Marco_Calculadora extends JFrame{
 		
 		add(milamina);
 		
+		//pack();
+		
 	}
 	
 }
@@ -45,7 +49,7 @@ class Lamina_Calculadora extends JPanel{
 		
 		setLayout(new BorderLayout());
 		
-		JButton pantalla = new JButton("0");
+		pantalla = new JButton("0");
 		
 		pantalla.setEnabled(false);
 		
@@ -59,37 +63,39 @@ class Lamina_Calculadora extends JPanel{
 		
 		milamina2.setLayout(new GridLayout(4, 4));
 		
-		poner_Boton("7");
+		ActionListener insertar = new InsertaNumero();
 		
-		poner_Boton("8");
+		poner_Boton("7",insertar);
 		
-		poner_Boton("9");
+		poner_Boton("8",insertar);
 		
-		poner_Boton("/");
+		poner_Boton("9",insertar);
 		
-		poner_Boton("4");
+		//poner_Boton("/");
 		
-		poner_Boton("5");
+		poner_Boton("4",insertar);
 		
-		poner_Boton("6");
+		poner_Boton("5",insertar);
 		
-		poner_Boton("*");
+		poner_Boton("6",insertar);
 		
-		poner_Boton("1");
+		//poner_Boton("*");
 		
-		poner_Boton("2");
+		poner_Boton("1",insertar);
 		
-		poner_Boton("3");
+		poner_Boton("2",insertar);
 		
-		poner_Boton("-");
+		poner_Boton("3",insertar);
 		
-		poner_Boton("0");
+		//poner_Boton("-");
 		
-		poner_Boton(".");
+		poner_Boton("0",insertar);
 		
-		poner_Boton("=");
+		poner_Boton(".",insertar);
 		
-		poner_Boton("+");
+		//poner_Boton("=");
+		
+		//poner_Boton("+");
 		
 		add(milamina2,BorderLayout.CENTER);
 		
@@ -99,13 +105,41 @@ class Lamina_Calculadora extends JPanel{
 	 * para no tener que añadir uno por uno cada boton. El orden
 	 * en que agregamos los botones determina como se va completando
 	 * la cuadricula. Tambien se puede indicar en que punto de la
-	 * cuadricula queremos cada cosa, pero asi vamos más rápido*/
+	 * cuadricula queremos cada cosa, pero asi vamos más rápido. Lo 
+	 * aprovechamos tambien para poner todos los botones a la esucha*/
 	
-	private void poner_Boton (String rotulo) {
+	private void poner_Boton (String rotulo, ActionListener oyente) {
 		
 		JButton boton = new JButton(rotulo);
 		
+		boton.addActionListener(oyente);
+		
 		milamina2.add(boton);
+		
+	}
+	
+	private class InsertaNumero implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+			String entrada = e.getActionCommand();
+			
+			/*Esta mandanguilla la hago para que borre el primer 0
+			 * de la pantalla de la calculadora*/
+			
+			if(pantalla.getText()=="0") {
+				
+				pantalla.setText(entrada);
+				
+			}else {
+				
+				pantalla.setText(pantalla.getText()+entrada);
+				
+			}			
+			
+		}		
 		
 	}
 	
@@ -114,5 +148,7 @@ class Lamina_Calculadora extends JPanel{
 	 * de milamina2 seria solo del constructor de Lamina_Calculadora*/
 	
 	private JPanel milamina2; 
+	
+	private JButton pantalla;
 	
 }
