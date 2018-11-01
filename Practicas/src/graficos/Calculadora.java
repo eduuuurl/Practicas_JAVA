@@ -5,9 +5,7 @@
 package graficos;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
+import java.awt.event.*;
 import javax.swing.*;
 
 public class Calculadora {
@@ -47,6 +45,10 @@ class Lamina_Calculadora extends JPanel{
 	
 	public Lamina_Calculadora () {
 		
+		principio = true;
+		/*Esto es solo para que funcione lo de que borre el primer 0
+		 * que sale en la calculadora cuando empiezo a introducir valores*/
+		
 		setLayout(new BorderLayout());
 		
 		pantalla = new JButton("0");
@@ -65,13 +67,15 @@ class Lamina_Calculadora extends JPanel{
 		
 		ActionListener insertar = new InsertaNumero();
 		
+		ActionListener orden = new AccionOrden();
+		
 		poner_Boton("7",insertar);
 		
 		poner_Boton("8",insertar);
 		
 		poner_Boton("9",insertar);
 		
-		//poner_Boton("/");
+		poner_Boton("/",orden);
 		
 		poner_Boton("4",insertar);
 		
@@ -79,7 +83,7 @@ class Lamina_Calculadora extends JPanel{
 		
 		poner_Boton("6",insertar);
 		
-		//poner_Boton("*");
+		poner_Boton("*",orden);
 		
 		poner_Boton("1",insertar);
 		
@@ -87,15 +91,15 @@ class Lamina_Calculadora extends JPanel{
 		
 		poner_Boton("3",insertar);
 		
-		//poner_Boton("-");
+		poner_Boton("-",orden);
 		
 		poner_Boton("0",insertar);
 		
 		poner_Boton(".",insertar);
 		
-		//poner_Boton("=");
+		poner_Boton("=",orden);
 		
-		//poner_Boton("+");
+		poner_Boton("+",orden);
 		
 		add(milamina2,BorderLayout.CENTER);
 		
@@ -126,20 +130,33 @@ class Lamina_Calculadora extends JPanel{
 			
 			String entrada = e.getActionCommand();
 			
-			/*Esta mandanguilla la hago para que borre el primer 0
-			 * de la pantalla de la calculadora*/
-			
-			if(pantalla.getText()=="0") {
+			if(principio){
 				
-				pantalla.setText(entrada);
+				pantalla.setText("");
 				
-			}else {
+				principio = false;
 				
-				pantalla.setText(pantalla.getText()+entrada);
+			}
 				
-			}			
+			pantalla.setText(pantalla.getText()+entrada);						
 			
 		}		
+		
+	}
+	
+	private class AccionOrden implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+			principio = true;
+			/*Al volver a poner a true esta variable, lo que conseguimos
+			 * es que despues de pulsar una tecla de operacion, el siguiente
+			 * numero que apretemos aparecerá sobre una pantalla recien
+			 * limpiada, no se concatenara con lo que ya hubiese en pantalla*/
+			
+		}	
 		
 	}
 	
@@ -150,5 +167,7 @@ class Lamina_Calculadora extends JPanel{
 	private JPanel milamina2; 
 	
 	private JButton pantalla;
+	
+	private boolean principio;
 	
 }
