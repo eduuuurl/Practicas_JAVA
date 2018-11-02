@@ -103,6 +103,8 @@ class Lamina_Calculadora extends JPanel{
 		
 		add(milamina2,BorderLayout.CENTER);
 		
+		ultimaOperacion = "=";
+		
 	}
 	
 	/*Creamos este metodo para que haya menos lineas de codigo,
@@ -150,13 +152,58 @@ class Lamina_Calculadora extends JPanel{
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			
+			String operacion = e.getActionCommand();			
+			
+			calcular(Double.parseDouble(pantalla.getText()));
+			
+			ultimaOperacion = operacion;
+			
 			principio = true;
 			/*Al volver a poner a true esta variable, lo que conseguimos
 			 * es que despues de pulsar una tecla de operacion, el siguiente
 			 * numero que apretemos aparecerá sobre una pantalla recien
 			 * limpiada, no se concatenara con lo que ya hubiese en pantalla*/
 			
-		}	
+		}
+		
+		/*Este metodo va a ser el que haga todas las operaciones en la 
+		 * calculadora*/
+		
+		public void calcular (Double x) {
+			
+			if (ultimaOperacion.equals("+")) {
+				
+				resultado+=x;				
+								
+			}
+			
+			if (ultimaOperacion.equals("-")) {
+				
+				resultado-=x;				
+								
+			}
+			
+			if (ultimaOperacion.equals("*")) {
+				
+				resultado*=x;				
+								
+			}
+			
+			if (ultimaOperacion.equals("/")) {
+				
+				resultado/=x;				
+								
+			}
+			
+			else if (ultimaOperacion.equals("=")) {
+				
+				resultado=x;
+				
+			}
+			
+			pantalla.setText(""+resultado); //Esto de poner la string vacia es para poder usar el double resultado como una string
+			
+		}
 		
 	}
 	
@@ -169,5 +216,9 @@ class Lamina_Calculadora extends JPanel{
 	private JButton pantalla;
 	
 	private boolean principio;
+	
+	private double resultado;
+	
+	private String ultimaOperacion;
 	
 }
