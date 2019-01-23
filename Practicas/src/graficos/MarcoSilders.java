@@ -23,7 +23,7 @@ class Frame_Silders extends JFrame{
 	
 	public Frame_Silders() {
 		
-		setBounds(550,400,550,350);
+		setBounds(550,400,1050,350);
 		Lamina_Sliders milamina = new Lamina_Sliders();
 		add(milamina);
 		setVisible(true);
@@ -36,15 +36,35 @@ class Lamina_Sliders extends JPanel{
 	
 	public Lamina_Sliders() {
 		
-		JSlider control = new JSlider(0,200,150);
+		setLayout(new BorderLayout());
+		rotulo = new JLabel("En un lugar de la mancha...");
+		rotulo.setFont(new Font("Serif",Font.BOLD,12));
+		add(rotulo, BorderLayout.CENTER);
+		
+		control = new JSlider(0,80,12);
 		control.setMinorTickSpacing(10);
-		control.setMajorTickSpacing(50);
+		control.setMajorTickSpacing(20);
 		control.setPaintTicks(true);
 		control.setFont(new Font("Serif",Font.ITALIC,12));
 		control.setSnapToTicks(true);
 		control.setPaintLabels(true);
 		control.setOrientation(SwingConstants.VERTICAL);
-		add(control);
+		add(control,BorderLayout.EAST);
+		control.addChangeListener(new Evento_Slider());
+		
+	}
+	
+	private JLabel rotulo;
+	private JSlider control;
+	private class Evento_Slider implements ChangeListener{
+
+		@Override
+		public void stateChanged(ChangeEvent e) {
+			// TODO Auto-generated method stub
+						
+			rotulo.setFont(new Font("Serif",Font.BOLD,control.getValue()));			
+			
+		}
 		
 	}
 	
