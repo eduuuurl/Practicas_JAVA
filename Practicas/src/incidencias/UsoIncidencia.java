@@ -18,7 +18,7 @@ public class UsoIncidencia {
 class MarcoIncidencias extends JFrame{	
 	public MarcoIncidencias () {		
 		setTitle("Gestion incidencias");		
-		setBounds(100,100,1200,800);
+		setBounds(70,70,1700,800);
 		LaminaIncidencias milamina = new LaminaIncidencias();
 		add(milamina);
 	}	
@@ -27,21 +27,32 @@ class MarcoIncidencias extends JFrame{
 /*Esta es la lamina general, la que ocupa todo el marco por decirlo así*/
 class LaminaIncidencias extends JPanel{
 	public LaminaIncidencias () {
-		setVisible(true);
-		setLayout(new BorderLayout());
 		LaminaSuperior milaminasuperior = new LaminaSuperior();
-		add(milaminasuperior, BorderLayout.NORTH);
+		add(milaminasuperior);
 	}
 }
 
 /*Esta es la lamina superior, en la que tendre los cuadros para introducir valores,
  * y tambien los botones de la aplicacion, que estaran a la derecha*/
 class LaminaSuperior extends JPanel{
-	Font fuentebotones = new Font ("Serif",Font.BOLD,24);
+	Font fuentebotones = new Font ("Serif",Font.BOLD,20);
+	Font fuenteentrada = new Font ("Serif",Font.PLAIN,18);
 	public LaminaSuperior() {
-		setBackground(Color.BLUE); //Esto es solo para ver la lamina, quitarlo al final.
-		setVisible(true);
-		setLayout(new BorderLayout());
+		
+		/*Creacion de una lamina a la izquierda, donde el usuario podrá
+		 * introducir datos*/
+		JPanel laminaentrada = new JPanel();
+		add(laminaentrada);
+		
+		LaminaEntradaDatos entrada1 = new LaminaEntradaDatos("IET ",7);
+		LaminaEntradaDatos entrada2 = new LaminaEntradaDatos("Fecha ",7);
+		LaminaEntradaDatos entrada3 = new LaminaEntradaDatos("Cliente ",10);
+		LaminaEntradaDatos entrada4 = new LaminaEntradaDatos("Descripción ",40);
+		
+		laminaentrada.add(entrada1);
+		laminaentrada.add(entrada2);
+		laminaentrada.add(entrada3);
+		laminaentrada.add(entrada4);
 		
 		/*Creación de los 3 botones de la app*/
 		JButton botoncrear = new JButton("Crear");
@@ -53,22 +64,11 @@ class LaminaSuperior extends JPanel{
 		
 		/*Creacion de una lamina a la derecha, para poner los botones en ella*/
 		JPanel laminabotones = new JPanel();
-		laminabotones.setLayout(new GridLayout(3, 1));
-		add(laminabotones,BorderLayout.EAST);
+		laminabotones.setLayout(new GridLayout(1, 3));
+		add(laminabotones);
 		laminabotones.add(botoncrear);
 		laminabotones.add(botonbuscar);
-		laminabotones.add(botonopciones);
-		
-		/*Creacion de una lamina a la izquierda, donde el usuario podrá
-		 * introducir datos*/
-		JPanel laminaentrada = new JPanel();
-		//laminaentrada.setLayout(new GridLayout(3,2));
-		add(laminaentrada,BorderLayout.WEST);
-		laminaentrada.add(new LaminaEntradaDatos("IET ",10));
-		laminaentrada.add(new LaminaEntradaDatos("Fecha ",10));
-		laminaentrada.add(new LaminaEntradaDatos("Cliente ",20));
-		laminaentrada.add(new LaminaEntradaDatos("Descripción ",40));
-		
+		laminabotones.add(botonopciones);	
 	}
 	
 	/*Esta lamina es para poder crear los campos más rapido en la lamina de la izquierda,
@@ -80,9 +80,9 @@ class LaminaSuperior extends JPanel{
 			JLabel nombre = new JLabel(nombre_campo);
 			JTextField campo = new JTextField(ancho_campo);
 			nombre.setFont(fuentebotones);
+			campo.setFont(fuenteentrada);
 			add(nombre,BorderLayout.WEST);
-			add(campo, BorderLayout.EAST);
-			
+			add(campo, BorderLayout.EAST);			
 		}
 	}
 	
