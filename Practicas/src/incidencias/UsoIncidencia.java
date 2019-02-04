@@ -15,7 +15,7 @@ public class UsoIncidencia {
 		mimarco.setVisible(true);		
 		mimarco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mimarco.setResizable(false);
-	}
+	}	
 }
 
 class MarcoIncidencias extends JFrame{	
@@ -36,17 +36,20 @@ class LaminaIncidencias extends JPanel{
 		milaminasuperior.setPreferredSize(new Dimension(1700, 0));
 		add(milaminasuperior);
 		milaminainferior = new LaminaInferior();
-		//milaminainferior.setPreferredSize(new Dimension(1700, 677));
-		//milaminainferior.setLayout(new BoxLayout(milaminainferior,BoxLayout.Y_AXIS));		
-		JScrollPane pruebita = new JScrollPane(milaminainferior);
-		pruebita.setPreferredSize(new Dimension(1650,670));
-		add(pruebita);
+		milaminainferior.setLayout(new BoxLayout(milaminainferior,BoxLayout.Y_AXIS));		
+		JScrollPane laminaInferiorScrollable = new JScrollPane(milaminainferior);
+		laminaInferiorScrollable.setPreferredSize(new Dimension(1650,670));
+		add(laminaInferiorScrollable);
 	}
 	
 	/*Estos dos objetos los declaro aquí, porque si no no podria hacer
 	 * que el objeto oyente pueda verlos.*/
 	LaminaSuperior milaminasuperior;
 	LaminaInferior milaminainferior;
+	
+	/*START - Esto son pruebas para ver como va la LaminaIncidenciaInferior*/
+	int numeroprueba = 0;
+	/*END - Esto son pruebas para ver como va la LaminaIncidenciaInferior*/
 	
 	private class Oyente_Agregar implements ActionListener{
 		@Override
@@ -138,8 +141,6 @@ class LaminaIncidencias extends JPanel{
 	class LaminaInferior extends JPanel{
 		public LaminaInferior () {
 			setBackground(new Color(200,205,182));
-			//BoxLayout layoutlaminainferior = new BoxLayout(this,BoxLayout.Y_AXIS);
-			//setLayout(layoutlaminainferior);
 		}
 	}
 
@@ -148,8 +149,15 @@ class LaminaIncidencias extends JPanel{
 	class LaminaIncidenciaInferior extends JPanel{
 		public LaminaIncidenciaInferior () {
 			setPreferredSize(new Dimension(1670, 30));
-			//setSize(new Dimension(1670,30));
-		}
+			setMaximumSize(new Dimension(1670, 30));
+			
+			/*START - Esto son pruebas para ver como va la LaminaIncidenciaInferior*/
+			add(new JButton("Primer boton"));
+			add (new JLabel("esta es la lamina "));
+			add (new JLabel(String.valueOf(numeroprueba)));
+			numeroprueba++;	
+			/*END - Esto son pruebas para ver como va la LaminaIncidenciaInferior*/
+		}		
 	}
 }
 
