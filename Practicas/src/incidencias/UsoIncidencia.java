@@ -30,16 +30,21 @@ class MarcoIncidencias extends JFrame{
 /*Esta es la lamina general, la que ocupa todo el marco por decirlo así*/
 class LaminaIncidencias extends JPanel{
 	public LaminaIncidencias () {
-		BoxLayout layoutgeneral = new BoxLayout(this,BoxLayout.Y_AXIS);
+		BoxLayout layoutgeneral = new BoxLayout(this,BoxLayout.Y_AXIS);		
 		setLayout(layoutgeneral);
 		milaminasuperior = new LaminaSuperior();
 		milaminasuperior.setPreferredSize(new Dimension(1700, 0));
 		add(milaminasuperior);
 		milaminainferior = new LaminaInferior();
-		milaminainferior.setPreferredSize(new Dimension(1700, 677));
-		add(milaminainferior);
+		//milaminainferior.setPreferredSize(new Dimension(1700, 677));
+		//milaminainferior.setLayout(new BoxLayout(milaminainferior,BoxLayout.Y_AXIS));		
+		JScrollPane pruebita = new JScrollPane(milaminainferior);
+		pruebita.setPreferredSize(new Dimension(1650,670));
+		add(pruebita);
 	}
 	
+	/*Estos dos objetos los declaro aquí, porque si no no podria hacer
+	 * que el objeto oyente pueda verlos.*/
 	LaminaSuperior milaminasuperior;
 	LaminaInferior milaminainferior;
 	
@@ -49,7 +54,7 @@ class LaminaIncidencias extends JPanel{
 			// TODO Auto-generated method stub
 			milaminainferior.add(new LaminaIncidenciaInferior());
 			milaminainferior.revalidate();
-			milaminainferior.repaint();			
+			milaminainferior.repaint();
 		}		
 	}
 	
@@ -132,7 +137,9 @@ class LaminaIncidencias extends JPanel{
 	 * todas las incidencias que se vayan creando*/
 	class LaminaInferior extends JPanel{
 		public LaminaInferior () {
-			setBackground(new Color(200,205,182));		
+			setBackground(new Color(200,205,182));
+			//BoxLayout layoutlaminainferior = new BoxLayout(this,BoxLayout.Y_AXIS);
+			//setLayout(layoutlaminainferior);
 		}
 	}
 
@@ -141,6 +148,7 @@ class LaminaIncidencias extends JPanel{
 	class LaminaIncidenciaInferior extends JPanel{
 		public LaminaIncidenciaInferior () {
 			setPreferredSize(new Dimension(1670, 30));
+			//setSize(new Dimension(1670,30));
 		}
 	}
 }
